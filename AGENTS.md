@@ -2,14 +2,15 @@
 
 ## Project
 
-- Browser-only PDF merger, with Thai UI, vanilla JavaScript, Vite and `pdf-lib`.
+- Browser-only PDF merger with Thai UI, plain HTML/CSS/JavaScript and a local, pinned `pdf-lib` browser bundle.
+- Keep the website buildless. Do not add Node.js, npm, Vite, package imports or a required compilation step. Opening `index.html` directly and serving the repository root must both work.
 - Keep PDF contents on the user's device. Do not add uploads, analytics or external runtime CDNs.
 - Preserve keyboard access, responsive layouts, Thai labels and useful error messages.
 - Keep upload, file ordering/removal, output naming and merge actions inside one viewport. Long file lists scroll inside their own panel; do not turn the workspace into a vertically scrolling landing page. Put secondary help in the help dialog.
 - Load encrypted PDFs with the library's default checks; never use `ignoreEncryption` to bypass them.
 - Use `textContent` for file names and other user-controlled strings.
-- Keep dependencies pinned and commit `package-lock.json` with dependency changes.
-- Production assets use `/CombinePDF/`; update `vite.config.js`, tests and documentation together if the repository path changes.
+- Keep browser dependencies and fonts in `assets/`, preserve their licenses, and record versions and hashes when changing them. Optional Python dependencies are for developer tests only.
+- Use relative asset URLs. GitHub Pages publishes `main` / repository root at `/CombinePDF/`; test that exact source tree and path, never a generated substitute.
 
 ## Git rules
 
@@ -25,11 +26,10 @@
 
 ## Development and verification
 
-- Node.js 24 LTS; install with `npm ci`.
-- `npm run dev` serves the app at `http://localhost:5173/CombinePDF/`.
-- `npm run check` checks JavaScript syntax.
-- `npm run build` builds only deployable assets into `dist/`.
-- `npm test` runs browser tests against the production build. Run `npx playwright install chromium` once first. For a local installed Edge browser, set `PLAYWRIGHT_CHANNEL=msedge`.
+- No installation or build is needed to run or deploy the website. Open `index.html`, or optionally use `python tests/serve.py` for a local HTTP preview.
+- Run `python tests/check_static.py` to verify every referenced runtime asset and the pinned PDF library. This check uses Python's standard library only.
+- Optional browser tests: `python -m pip install -r requirements-dev.txt`, `python -m playwright install chromium`, then `python -m unittest discover -s tests -p "test_*.py" -v`. On Windows, an installed Edge browser can be used by setting `PLAYWRIGHT_CHANNEL=msedge`.
 - For behavior changes, verify valid merging and page order, invalid/encrypted PDFs, removing/reordering files, download naming, keyboard access and mobile layout as applicable. Use generated test PDFs, never real user documents.
 - Review desktop and mobile rendering after meaningful visual changes. Do not add tests that merely repeat static markup.
-- The GitHub Pages workflow validates and tests pull requests, and deploys successful `main` builds only. Keep deployment permissions scoped to the deploy job and publish only `dist/`.
+- GitHub Pages uses the existing branch publishing source (`main`, `/ (root)`). The check workflow validates source assets and runs browser tests; it must not replace or race the Pages deployment with a separate built artifact.
+- Before declaring a deployment fixed, inspect the actual public URL, confirm its version and asset responses, and test an actual PDF download there. A successful push or local test is insufficient.

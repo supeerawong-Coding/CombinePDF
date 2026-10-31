@@ -11,3 +11,6 @@ playwright-report/
 Thumbs.db
 .vscode/
 .idea/
+__pycache__/
+.venv/
+site-preview/
