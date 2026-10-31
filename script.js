@@ -1,5 +1,8 @@
-import { PDFDocument, EncryptedPDFError } from 'pdf-lib';
-import './styles.css';
+(() => {
+'use strict';
+
+const PDFDocument = window.PDFLib?.PDFDocument;
+const EncryptedPDFError = window.PDFLib?.EncryptedPDFError;
 
 const MAX_FILE_BYTES = 50 * 1024 * 1024;
 const MAX_TOTAL_BYTES = 200 * 1024 * 1024;
@@ -68,7 +71,7 @@ function actionButton(entry, action, label, iconName, disabled) {
 function render() {
   const ready = state.files.filter((entry) => entry.status === 'ready');
   const hasError = state.files.some((entry) => entry.status === 'error');
-  const canMerge = ready.length >= 2 && !hasError && !state.busy;
+  const canMerge = Boolean(PDFDocument) && ready.length >= 2 && !hasError && !state.busy;
   $('file-count').textContent = state.files.length;
   $('total-files').textContent = ready.length;
   $('total-pages').textContent = ready.reduce((sum, entry) => sum + entry.pages, 0).toLocaleString('en-US');
@@ -78,8 +81,8 @@ function render() {
   $('reorder-hint').hidden = state.files.length < 2;
   $('clear-button').disabled = Boolean(state.busy || !state.files.length);
   $('files-panel').setAttribute('aria-busy', String(Boolean(state.busy)));
-  dropZone.disabled = Boolean(state.busy);
-  fileInput.disabled = Boolean(state.busy);
+  dropZone.disabled = Boolean(state.busy) || !PDFDocument;
+  fileInput.disabled = Boolean(state.busy) || !PDFDocument;
   outputName.disabled = Boolean(state.busy);
   combineButton.disabled = !canMerge;
   $('combine-label').textContent = state.busy === 'merge' ? 'กำลังรวมไฟล์…' : state.busy === 'validate' ? 'กำลังตรวจสอบ…' : 'รวมไฟล์ PDF';
@@ -146,7 +149,7 @@ async function readPdf(file) {
 }
 
 async function addFiles(files) {
-  if (state.busy || !files.length) return;
+  if (state.busy || !PDFDocument || !files.length) return;
   const rejected = [];
   const pending = [];
   const keys = new Set(state.files.map((entry) => entry.key));
@@ -166,7 +169,7 @@ async function addFiles(files) {
     }
     keys.add(key);
     totalBytes += file.size;
-    pending.push({ id: crypto.randomUUID(), key, file, status: 'loading', pages: 0, error: '' });
+    pending.push({ id: globalThis.crypto?.randomUUID?.() ?? `file-${Date.now()}-${Math.random().toString(36).slice(2)}`, key, file, status: 'loading', pages: 0, error: '' });
   }
   if (!pending.length) {
     showMessage(rejected.join(' · '), 'error');
@@ -331,3 +334,5 @@ render();
 
 $('help-button').addEventListener('click', () => $('help-dialog').showModal());
 $('help-close').addEventListener('click', () => $('help-dialog').close());
+if (!PDFDocument) showMessage('โหลดเครื่องมือ PDF ไม่สำเร็จ กรุณารีเฟรชหน้าเว็บ หากเปิดจากโฟลเดอร์ ให้ตรวจว่ามีโฟลเดอร์ assets อยู่ครบ', 'error');
+})();
