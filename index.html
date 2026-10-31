@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#186650" />
+    <meta name="description" content="รวมไฟล์ PDF เรียงลำดับ และดาวน์โหลดได้ฟรี ประมวลผลบนอุปกรณ์ของคุณ โดยไม่อัปโหลดเอกสารขึ้นเซิร์ฟเวอร์" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>CombinePDF — รวม PDF ให้เป็นเรื่องง่าย</title>
+  </head>
+  <body>
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="i-pages" viewBox="0 0 24 24"><path d="M8 3h9l4 4v13a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M16 3v5h5M3 5v12a1 1 0 0 0 1 1M11 12h6m-6 4h6"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 20V4m-6 6 6-6 6 6"/></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v5c0 5-4 9-8 11-4-2-8-6-8-11V6l8-3Z"/><path d="m8 12 3 3 5-6"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 5v-4a3.5 3.5 0 0 0-1-3c3 0 6-1 6-6a5 5 0 0 0-1-3 5 5 0 0 0 0-4s-1 0-4 2a13 13 0 0 0-6 0C6 2 5 2 5 2a5 5 0 0 0 0 4 5 5 0 0 0-1 3c0 5 3 6 6 6a3.5 3.5 0 0 0-1 3v4"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.1"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z"/></symbol>
+    </svg>
+    <a class="skip-link" href="#workspace">ข้ามไปพื้นที่รวมไฟล์</a>
+    <header class="site-header shell">
+      <a class="brand" href="./" aria-label="CombinePDF หน้าแรก"><span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-pages" /></svg></span><span>Combine<span class="brand-accent">PDF</span><span class="brand-dot">.</span></span></a>
+      <nav aria-label="เมนูหลัก"><button class="nav-how" id="help-button" type="button" aria-haspopup="dialog">วิธีใช้งาน</button><a class="github-link" href="https://github.com/supeerawong-Coding/CombinePDF" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github" /></svg><span>GitHub</span><span class="external-arrow" aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main class="shell">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="tiny-line"></span> YOUR EVERYDAY PDF WORKSPACE</p>
+          <h1 id="page-title">รวม PDF ให้เป็น<span class="highlight">เรื่องเดียว.</span></h1>
+          <p class="hero-description">เลือกไฟล์ จัดลำดับ แล้วดาวน์โหลด — ทุกขั้นตอนบนอุปกรณ์ของคุณ</p>
+        </div>
+        <div class="intro-privacy"><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><div><strong>เอกสารของคุณ อยู่กับคุณเสมอ</strong><span>ใช้งานฟรี · ไม่ต้องสมัคร · ไม่อัปโหลดไฟล์</span></div></div>
+      </section>
+
+      <section class="workspace" id="workspace" aria-labelledby="workspace-title" tabindex="-1">
+        <div class="workspace-header"><div class="section-label"><span class="status-dot"></span><h2 id="workspace-title">พื้นที่ทำงานของคุณ</h2></div><span class="local-badge"><svg class="icon" aria-hidden="true"><use href="#i-lock" /></svg>ไฟล์อยู่บนอุปกรณ์ของคุณ</span></div>
+        <div class="workspace-grid">
+          <div class="files-panel" id="files-panel" aria-busy="false">
+            <div class="panel-heading"><h3><span class="step-number">01</span> เพิ่มไฟล์ PDF</h3><span class="panel-note">เลือกได้หลายไฟล์พร้อมกัน</span></div>
+            <input type="file" id="file-input" accept=".pdf,application/pdf" multiple hidden />
+            <button class="drop-zone" id="drop-zone" type="button" aria-label="เลือกไฟล์ PDF" aria-describedby="upload-limits"><span class="upload-icon"><svg class="icon" aria-hidden="true"><use href="#i-upload" /></svg></span><span class="drop-title">ลากไฟล์ PDF มาวางที่นี่</span><span class="drop-subtitle">หรือเลือกจากอุปกรณ์ของคุณ</span><span class="choose-button"><svg class="icon" aria-hidden="true"><use href="#i-plus" /></svg>เลือกไฟล์</span></button>
+            <p class="upload-limits" id="upload-limits">เฉพาะ PDF · สูงสุด 50 MB / ไฟล์ · รวมไม่เกิน 200 MB และ 50 ไฟล์</p>
+            <div class="file-list-header"><h3>รายการไฟล์ <span class="count-badge" id="file-count">0</span></h3><button class="text-button clear-button" id="clear-button" type="button" disabled><svg class="icon" aria-hidden="true"><use href="#i-trash" /></svg>ล้างทั้งหมด</button></div>
+            <div class="empty-state" id="empty-state"><span class="empty-icon"><svg class="icon" aria-hidden="true"><use href="#i-pages" /></svg></span><div><p>เริ่มต้นด้วย PDF ของคุณ</p><span>ไฟล์ที่เลือกจะแสดงที่นี่ พร้อมให้จัดลำดับ</span></div></div>
+            <ol class="file-list" id="file-list" aria-label="ไฟล์ PDF ตามลำดับที่จะรวม"></ol>
+            <p class="reorder-hint" id="reorder-hint" hidden><svg class="icon" aria-hidden="true"><use href="#i-info" /></svg>ใช้ปุ่มลูกศรเพื่อจัดลำดับหน้าเอกสารก่อนรวม</p>
+          </div>
+          <aside class="summary-panel" aria-labelledby="summary-title">
+            <h3 id="summary-title"><span class="step-number">02</span> รวมให้เป็นไฟล์เดียว</h3>
+            <div class="summary-total"><span class="total-value" id="total-files">0</span><span class="total-label">ไฟล์พร้อมรวม</span><span class="summary-pages-icon"><svg class="icon" aria-hidden="true"><use href="#i-pages" /></svg></span></div>
+            <dl class="summary-details"><div><dt>จำนวนหน้าทั้งหมด</dt><dd><span id="total-pages">0</span> หน้า</dd></div><div><dt>ขนาดไฟล์ต้นฉบับ</dt><dd id="total-size">0 KB</dd></div></dl>
+            <label class="filename-label" for="output-name">ชื่อไฟล์หลังรวม</label><div class="filename-field"><input id="output-name" type="text" value="combined" maxlength="100" autocomplete="off" spellcheck="false" aria-describedby="filename-hint" /><span>.pdf</span></div><p class="filename-hint" id="filename-hint">ตั้งชื่อไฟล์ได้ตามต้องการ</p>
+            <button class="combine-button" id="combine-button" type="button" disabled><span id="combine-label">รวมไฟล์ PDF</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg></button>
+            <p class="combine-hint" id="combine-hint">เลือกอย่างน้อย 2 ไฟล์เพื่อเริ่มรวม</p>
+            <div class="progress-wrap" id="progress-wrap" hidden><progress id="merge-progress" max="100" value="0" aria-label="ความคืบหน้าการประมวลผล PDF"></progress><p id="progress-label"></p></div>
+            <div class="privacy-note"><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><div><strong>เอกสารของคุณ เป็นของคุณเสมอ</strong><p>รวมไฟล์ในเบราว์เซอร์โดยตรง<br />ไม่มีการส่งเอกสารไปยังเซิร์ฟเวอร์</p></div></div>
+          </aside>
+        </div>
+        <div class="message" id="message" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+        <div class="result-panel" id="result-panel" hidden><span class="result-check"><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg></span><div class="result-copy"><strong>เรียบร้อย! เอกสารพร้อมแล้ว</strong><p id="result-details"></p></div><a class="download-button" id="download-link"><svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>ดาวน์โหลดอีกครั้ง</a></div>
+      </section>
+    </main>
+    <dialog class="help-dialog" id="help-dialog" aria-labelledby="how-title">
+      <div class="help-header"><p class="eyebrow">SIMPLE BY DESIGN</p><button class="help-close" id="help-close" type="button" aria-label="ปิดวิธีใช้งาน">×</button></div>
+      <section class="how-it-works" id="how-it-works" aria-labelledby="how-title"><div class="how-heading"><h2 id="how-title">สามขั้นตอน ก็เรียบร้อย</h2></div><ol class="steps"><li><span class="instruction-number">1</span><div><h3>เลือกเอกสาร</h3><p>เพิ่ม PDF ที่ต้องการรวม</p></div></li><li><span class="instruction-number">2</span><div><h3>จัดลำดับให้ลงตัว</h3><p>ใช้ปุ่มลูกศรข้างชื่อไฟล์เพื่อเปลี่ยนลำดับ</p></div></li><li><span class="instruction-number">3</span><div><h3>รวมแล้วดาวน์โหลด</h3><p>ตั้งชื่อไฟล์ กดรวม แล้วรับเอกสารในไฟล์เดียว</p></div></li></ol></section>
+      <section class="faq" aria-label="คำถามที่พบบ่อย"><details><summary>ไฟล์ของฉันปลอดภัยแค่ไหน?</summary><p>เอกสารจะถูกอ่านและรวมในหน่วยความจำของเบราว์เซอร์ ไม่มีการอัปโหลดหรือบันทึกเอกสารลงในระบบของเว็บไซต์ เมื่อรีเฟรชหรือปิดหน้านี้ รายการไฟล์จะหายไป ส่วนไฟล์ที่ดาวน์โหลดจะยังอยู่บนอุปกรณ์ของคุณ</p></details><details><summary>รองรับ PDF แบบใดบ้าง?</summary><p>รองรับ PDF ทั่วไปที่ไม่เข้ารหัส สูงสุด 50 MB ต่อไฟล์ รวมไม่เกิน 200 MB และ 50 ไฟล์ ไฟล์เสียหรือไฟล์ที่เข้ารหัสจะต้องแก้ไขก่อนนำมาใช้ การรวมจะคัดลอกหน้าเอกสาร แต่ไม่ได้รับประกันการคงบุ๊กมาร์ก แบบฟอร์มเชิงโต้ตอบ หรือลายเซ็นดิจิทัล</p></details></section>
+    </dialog>
+    <footer class="site-footer shell"><p>CombinePDF<span class="brand-dot">.</span><span class="footer-divider">/</span>เอกสารเป็นระเบียบ ชีวิตก็ง่ายขึ้น</p><span><svg class="icon" aria-hidden="true"><use href="#i-lock" /></svg>Built for your privacy.</span></footer>
+    <noscript><p class="noscript">กรุณาเปิดใช้งาน JavaScript เพื่อรวมไฟล์ PDF บนอุปกรณ์ของคุณ</p></noscript>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
